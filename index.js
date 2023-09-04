@@ -41,12 +41,14 @@ const handleLoadCategoryButton = async (catId) => {
 
     // now write forEach function for eachDataCard.
     function convertSecondsToHMS(seconds) {
+        const days = Math.floor(seconds/86400);
         const hours = Math.floor(seconds / 3600);
         const remainingSeconds = seconds % 3600;
         const minutes = Math.floor(remainingSeconds / 60);
         const remainingSecondsFinal = remainingSeconds % 60;
       
         return {
+            days: days,
           hours: hours,
           minutes: minutes,
           seconds: remainingSecondsFinal
@@ -54,9 +56,9 @@ const handleLoadCategoryButton = async (catId) => {
     }
       
       // Example usage:
-      const totalSeconds = 3665; // Replace this with the number of seconds you want to convert
-      const time = convertSecondsToHMS(totalSeconds);
-      console.log('type of eachdatacard: ',typeof eachDataCard);
+    //   const totalSeconds = 3665; // Replace this with the number of seconds you want to convert
+    //   const time = convertSecondsToHMS(totalSeconds);
+    //   console.log('type of eachdatacard: ',typeof eachDataCard);
       
       //console.log(`Hours: ${time.hours}, Minutes: ${time.minutes}, Seconds: ${time.seconds}`);
     
@@ -79,7 +81,7 @@ const handleLoadCategoryButton = async (catId) => {
 
                 <img class="w-full rounded-md h-[200px] object-cover " src=${card.thumbnail} />
 
-                <p id="posted-data" class="absolute mt-32 ml-56 text-red-600">${timeObject.hours}hrs ${timeObject.minutes}min ago</p>
+                <p id="posted-data" class="absolute px-1 mt-40 rounded-md ml-52 text-red-600 bg-black text-white">${card.others.posted_date?` ${timeObject.hours}hrs ${timeObject.minutes}min ago`:""}</p>
 
                 <div class="card-body">
                 <div class="flex justify-start gap-2">
