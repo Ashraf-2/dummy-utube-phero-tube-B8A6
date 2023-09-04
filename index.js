@@ -24,20 +24,40 @@ const handleCategory = async () => {
 const handleLoadCategoryButton = async (catId) => {
     const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${catId}`);
     const data = await response.json();
-    console.log('sp data -cat: ', data.data);
+    //console.log('sp data -cat: ', data.data);
     const x = data.data;
     const len =x.length;
-    console.log('len: ',len);
+    //console.log('len: ',len);
     
 
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML = '';
     const eachDataCard = data.data;
     console.log('eachDataCard :', eachDataCard);
+    
     // console.log('each data card posted date',eachDataCard.others.posted_date);
+    const noCardContainer = document.getElementById('no-card');
 
 
     // now write forEach function for eachDataCard.
+    function convertSecondsToHMS(seconds) {
+        const hours = Math.floor(seconds / 3600);
+        const remainingSeconds = seconds % 3600;
+        const minutes = Math.floor(remainingSeconds / 60);
+        const remainingSecondsFinal = remainingSeconds % 60;
+      
+        return {
+          hours: hours,
+          minutes: minutes,
+          seconds: remainingSecondsFinal
+        };
+    }
+      
+      // Example usage:
+      const totalSeconds = 3665; // Replace this with the number of seconds you want to convert
+      const time = convertSecondsToHMS(totalSeconds);
+      
+      //console.log(`Hours: ${time.hours}, Minutes: ${time.minutes}, Seconds: ${time.seconds}`);
     
     eachDataCard.forEach((card) => {
             //console.log("card: ", card);
@@ -46,33 +66,30 @@ const handleLoadCategoryButton = async (catId) => {
             const x = card.authors[0];
             const verification = card.authors.verified;
             const y = card.others.posted_date;
-            console.log('verfication: ',verification);
+            //console.log('y',y);
+            const timeObject = convertSecondsToHMS(y);
+            console.log('tt: ',timeObject);
+            //console.log('verfication: ',verification);
             console.log('posted date: ',y);
-            if(!y){
-                console.log("no posted date");
-            }
-            if(!verification){
-                console.log('not verfied');
-            }
-
 
             const div = document.createElement('div');
             div.innerHTML = `
-            <div class="card card-compact w-full bg-base-100 shadow-xl">
+            <div class="relative card card-compact w-full bg-base-100 shadow-xl">
 
-                <img class="w-full max-h-40" src=${card.thumbnail} />
-                <p>posted date: ${card.others?.posted_date}</p>
+                <img class="w-full rounded-md h-[200px] object-cover " src=${card.thumbnail} />
+
+                <p id="posted-data" class="absolute mt-32 ml-56 text-red-600">${timeObject.hours}hrs ${timeObject.minutes}min ago</p>
 
                 <div class="card-body">
                 <div class="flex justify-start gap-2">
 
                         <div>
-                            <img class="rounded-full  w-16 h-16" src=${x.profile_picture}/>
+                            <img class="rounded-full  w-16 h-16 object-cover" src=${x.profile_picture}/>
                         </div>
 
                         <div>
                             <h2 class="card-title">${card.title}</h2>
-                            <p id="prof_name">${x.profile_name}<span>hhh</span> </p>
+                            <p id="prof_name">${x.profile_name}<span>${x.verified?`<i class="fa-solid fa-circle-check" style="color: #005eff;"></i>`:""}</span> </p>
                             
                             <p>${card.others.views} views</p>
                         </div>
@@ -84,6 +101,17 @@ const handleLoadCategoryButton = async (catId) => {
 
 
             `
+            ///
+            
+              
+
+            //                           
+
+            //
+            if(y){
+                const postedData = document.getElementById('posted-data');
+
+            }
             // const span = document.createElement('span');
             // const photoName = document.getElementById('prof_name');
             // if(!verification){
@@ -94,25 +122,16 @@ const handleLoadCategoryButton = async (catId) => {
                 
             //}
 
+        noCardContainer.classList.add('hidden');
+        noCardContainer.classList.remove('grid')
+        cardContainer.appendChild(div);
 
-             cardContainer.appendChild(div);
     })
-    
-    
-    const divElse = document.createElement('div');
-  
-    divElse.innerHTML = `
-    <div class="flex flex-col justify-center>
-        <div class="text-center">
-            <img src="./icon.png" alt="error icon">
-        </div> 
-        <h2 class="text-xl text-center">Oops!! Sorry, There is no content here</h2>
-    </div>
-    `
-    if(x<=0){
-    cardContainer.appendChild(divElse)
+
+    if(x<=0 ){
+        noCardContainer.classList.remove('hidden');
+        noCardContainer.classList.add('grid');
     }
-   
 
 }
 
