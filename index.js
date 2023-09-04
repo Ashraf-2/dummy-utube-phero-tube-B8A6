@@ -34,6 +34,7 @@ const handleLoadCategoryButton = async (catId) => {
     cardContainer.innerHTML = '';
     const eachDataCard = data.data;
     console.log('eachDataCard :', eachDataCard);
+    // console.log('each data card posted date',eachDataCard.others.posted_date);
 
 
     // now write forEach function for eachDataCard.
@@ -43,12 +44,24 @@ const handleLoadCategoryButton = async (catId) => {
             //console.log("img :", card.thumbnail);
             //console.log("authors: ", card.authors);
             const x = card.authors[0];
+            const verification = card.authors.verified;
+            const y = card.others.posted_date;
+            console.log('verfication: ',verification);
+            console.log('posted date: ',y);
+            if(!y){
+                console.log("no posted date");
+            }
+            if(!verification){
+                console.log('not verfied');
+            }
+
 
             const div = document.createElement('div');
             div.innerHTML = `
             <div class="card card-compact w-full bg-base-100 shadow-xl">
 
                 <img class="w-full max-h-40" src=${card.thumbnail} />
+                <p>posted date: ${card.others?.posted_date}</p>
 
                 <div class="card-body">
                 <div class="flex justify-start gap-2">
@@ -59,7 +72,8 @@ const handleLoadCategoryButton = async (catId) => {
 
                         <div>
                             <h2 class="card-title">${card.title}</h2>
-                            <p>${x.profile_name}</p>
+                            <p id="prof_name">${x.profile_name}<span>hhh</span> </p>
+                            
                             <p>${card.others.views} views</p>
                         </div>
                     </div>
@@ -70,15 +84,26 @@ const handleLoadCategoryButton = async (catId) => {
 
 
             `
-            cardContainer.appendChild(div);
+            // const span = document.createElement('span');
+            // const photoName = document.getElementById('prof_name');
+            // if(!verification){
+            //     span.innerHTML = `
+            //     sdsd
+            //     `
+            //     photoName.appendChild(span);
+                
+            //}
+
+
+             cardContainer.appendChild(div);
     })
     
     
     const divElse = document.createElement('div');
   
     divElse.innerHTML = `
-    <div>
-        <div class="flex-1 text-center">
+    <div class="flex flex-col justify-center>
+        <div class="text-center">
             <img src="./icon.png" alt="error icon">
         </div> 
         <h2 class="text-xl text-center">Oops!! Sorry, There is no content here</h2>
