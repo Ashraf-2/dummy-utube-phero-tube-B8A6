@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ph Tube</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.3.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <header class="w-11/12 mx-auto">
+        <nav class="flex flex-row justify-between">
+            <img src="./Logo.png" alt="logo">
+            <button class="btn btn-active">Sort By View</button>
+            <button class="btn btn-active">Blog</button>
+
+        </nav>
+        <hr class="mt-8 border-t-2">
+
+        <!-- create div using js and then create button using js dynamically -->
+        <!-- then append this div into the button-container or to the header -->
+        <div id="tab-container" class="flex justify-center gap-4 my-5">
+            <!-- <button class="btn">All</button> -->
+        </div>
+
+    </header>
+
+    <main class="w-11/12 mx-auto">
+        <!-- card container -->
+        <div id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- single card -->
+            <div class="card card-compact w-96 bg-base-100 shadow-xl">
+                <figure><img src="/Logo.png" alt="Shoes" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Shoes!</h2>
+                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                    <!-- no need of a button -->
+                    <!-- <div class="card-actions justify-end">
+                        <button class="btn btn-primary">Buy Now</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+
+    <script src="./index.js"></script>
+</body>
+
+</html>
