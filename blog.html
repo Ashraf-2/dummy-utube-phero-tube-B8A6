@@ -1,16 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog post answers</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.3.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+
+<body class="w-9/12 mx-auto bg-sky-300">
     <div>
-        <h2>Discuss the scope of var, let, and const</h2>
-        <h2>Tell us the use cases of null and undefined</h2>
-        <h2>What do you mean by REST API?</h2>
+        <h1 class="text-center text-4xl font-bold">Quenstions and Answers: </h1>
+        <div>
+            <h2 class="text-xl font-semibold">1. Discuss the scope of var, let, and const?</h2>
+            <p><span class="font-bold">scope of var:</span> var works like global. var can be
+                declared out of function and can use anywhere of the code. and var can be modified inside and outside of
+                the function and blocks, and within nested loops. <br>
+                <span class="font-bold">scope of let:</span> the scope of let is actually kind
+                of 'block'.that means if it declared inside of the block, then it can not be accessible out of the
+                block,for example: functions,condtions,and loop _inside of them a let variable can be modified, but
+                outside of them,can not be modified previously declared let variable. <br>
+                <span class="font-bold">scope of const:</span> this const variable is also a
+                block type scope. work like let. but one important thing is that, const variable can not be changed.
+                const variable can not be modified also.
+            </p>
+        </div>
+
+        <div>
+            <h2 class="text-xl font-semibold">2. Tell us the use cases of null and undefined</h2>
+            <p>
+                <span class="font-bold">Null:</span> Null is used to defined a variable which have no value.if we assign a variable with a
+                value once, and if leter we re assign the variable as NULL that means the variable will be null, and it
+                will lost its value. In terms of conditionals, NULL and Undefined both are considered as falsy value. <br>
+
+                <span class="font-bold">Undefined:</span> if we assign a variable and if we don't assign its value, then it will be
+                undefined. that means, variable which is declearded but not initialized will be undefined. <br> for example: <br>
+
+                <span class="text-center">let s;<br>console.log(s) //will be undefined.<span>
+                <br>
+                if a property of an object is not exist , and if we call the property of the object, then it will
+                console as 'undefined'.
+            </p>
+
+        </div>
+        <div>
+            <h2>What do you mean by REST API?</h2>
+
+
+        </div>
     </div>
-    
+
 </body>
+
 </html>

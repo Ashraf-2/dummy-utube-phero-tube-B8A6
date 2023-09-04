@@ -56,6 +56,7 @@ const handleLoadCategoryButton = async (catId) => {
       // Example usage:
       const totalSeconds = 3665; // Replace this with the number of seconds you want to convert
       const time = convertSecondsToHMS(totalSeconds);
+      console.log('type of eachdatacard: ',typeof eachDataCard);
       
       //console.log(`Hours: ${time.hours}, Minutes: ${time.minutes}, Seconds: ${time.seconds}`);
     
